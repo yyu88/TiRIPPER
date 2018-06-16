@@ -35,8 +35,8 @@ This software allows the user to produce exceptional album/playlists rips from t
 * for playlists `./tiripper.sh 2227df30-2a33-4bdf-a824-9391b6958ee7`
 * for albums and playlists `./tiripper.sh 2227df30-2a33-4bdf-a824-9391b6958ee7 55391447`
 * get urls from: 
-*   https://tidal.com/album/55391786
-*   https://tidal.com/playlist/2227df30-2a33-4bdf-a824-9391b6958ee7
+*   tidal/valbum/55391786
+*   tidal/playlist/2227df30-2a33-4bdf-a824-9391b6958ee7
 
 
 *THIS IS MEANT AS AN ALTERNATIVE FOR PERSONAL, OFFLINE LISTENING ONLY. USE AT OWN RESPONSIBILITY.
