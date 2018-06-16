@@ -4,7 +4,7 @@ Copyright 2017 Yongliang Yu krustysworld@gmail.com
 
 Released under [MIT License](http://en.wikipedia.org/wiki/MIT_License)
 
-This software allows the user to produce exceptional album rips from the Tidal music database. Requires Tidal subscription access.
+This software allows the user to produce exceptional album/playlists rips from the Tidal music database. Requires Tidal subscription access.
 
 
 # Features -
@@ -39,4 +39,4 @@ This software allows the user to produce exceptional album rips from the Tidal m
 *   https://tidal.com/playlist/2227df30-2a33-4bdf-a824-9391b6958ee7
 
 
-** THIS IS MEANT AS AN ALTERNATIVE FOR PERSONAL, OFFLINE LISTENING ONLY. USE AT OWN RESPONSIBILITY. **
+*THIS IS MEANT AS AN ALTERNATIVE FOR PERSONAL, OFFLINE LISTENING ONLY. USE AT OWN RESPONSIBILITY.
