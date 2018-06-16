@@ -32,9 +32,11 @@ This software allows the user to produce exceptional album rips from the Tidal m
 
 * Replace with Tidal session key, token
 * for albums `./tiripper.sh 55391786 55391447`
-* for playlists `chmod +x tiripper.sh 2227df30-2a33-4bdf-a824-9391b6958ee7`
-* for albums and playlists `chmod +x tiripper.sh 2227df30-2a33-4bdf-a824-9391b6958ee7 55391447`
+* for playlists `./tiripper.sh 2227df30-2a33-4bdf-a824-9391b6958ee7`
+* for albums and playlists `./tiripper.sh 2227df30-2a33-4bdf-a824-9391b6958ee7 55391447`
 * get urls from: 
-https://tidal.com/album/55391786
-https://tidal.com/playlist/2227df30-2a33-4bdf-a824-9391b6958ee7
-** THIS SOFTWARE IS MEANT AS AN ALTERNATIVE FOR PERSONAL OFFLINE LISTENING ONLY. USE AT YOUR OWN RESPONSIBILITY. **
+*   https://tidal.com/album/55391786
+*   https://tidal.com/playlist/2227df30-2a33-4bdf-a824-9391b6958ee7
+
+
+** THIS IS MEANT AS AN ALTERNATIVE FOR PERSONAL, OFFLINE LISTENING ONLY. USE AT OWN RESPONSIBILITY. **
