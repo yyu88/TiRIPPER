@@ -1,5 +1,5 @@
 #!/bin/bash
-#needs gsed, metaflac & ffmpeg (for flac encodes)
+#needs gsed, jq, metaflac & ffmpeg (for flac encodes)
 
 #tidalSession="X-Tidal-SessionId: SESSIONKEYHERE"
 #token=???
@@ -158,11 +158,22 @@ if [ "$play" = 0 ];then
 yearF=$(jq -r ".items[0].streamStartDate" <<< "$html" | cut -c1-4)
 fi
 
+if [ "$play" = 0 ];then
+
 if [ "$delm4a" = 1 ];then
-mkdir "Playlist - $albumName [FLAC] web"
+mkdir "$artistName - $albumName ($yearF) [FLAC] web"
 else
 mkdir "$artistName - $albumName ($yearF) [ALAC] web"
 fi
+
+else
+if [ "$delm4a" = 1 ];then
+mkdir "$albumName [FLAC] web"
+else
+mkdir "$albumName [ALAC] web"
+fi
+fi
+
 cd "$_"
 
 #inefficient way of clearing probably but worth the hassle
@@ -215,9 +226,25 @@ skip=1
 elif ls "${findex} - $newfix.flac" 1> /dev/null 2>&1;then
 echo "Already Exists."
 skip=1
+elif ls "$newfix.m4a" 1> /dev/null 2>&1;then
+echo "Already Exists."
+skip=1
+index=$((index+1))
+avoid=$((avoid+1))
+elif ls "$newfix.flac" 1> /dev/null 2>&1;then
+echo "Already Exists."
+skip=1
+index=$((index+1))
+avoid=$((avoid+1))
+
+else							
+
+if [ "$play" = 1 ];then
+wget --tries=2 -O "$newfix.m4a" "$(curl -s -H  "$tidalSession" -H "X-Tidal-Token: _DSTon1kC8pABnTw" -H "User-Agent: TIDAL/362 CFNetwork/711.4.6 Darwin/14.0.0" "http://api.tidalhifi.com/v1/tracks/$name/streamurl?countryCode=US&soundQuality=LOSSLESS" | jq -r ."url")"
+
 else
 wget --tries=2 -O "${findex} - $newfix.m4a" "$(curl -s -H  "$tidalSession" -H "X-Tidal-Token: $token" -H "User-Agent: TIDAL/362 CFNetwork/711.4.6 Darwin/14.0.0" "http://api.tidalhifi.com/v1/tracks/$name/streamurl?countryCode=US&soundQuality=LOSSLESS" | jq -r ."url")"
-
+fi
 if [ "$delm4a" = 1 ] && [ "$skip" = 0 ];then
 if [ "$play" = 1 ];then
 year=$(jq -r ".items[$dindex].item.streamStartDate" <<< "$html" | cut -c1-4)
@@ -258,7 +285,14 @@ if ls ".DS_Store" 1> /dev/null 2>&1;then
 echo "----.DS_Store garbage found in folder."
 maxItems=$((maxItems+1))
 fi
-if [ "$itemCount" = $((maxItems-avoidInput+2)) ]; then
+
+if [ "$itemCount" = $((maxItems-avoidInput+2)) ] && [ "$play" = 0 ];then
+right=1
+elif [ "$itemCount" = $((maxItems-avoidInput+1)) ] && [ "$play" = 1 ];then
+right=1
+fi
+
+if [ "$right" = 1 ];then
 echo "Index start was at $avoidInput."
 echo "$itemCount files found."
 echo "100% SUCCESSFULLY RIPPED."
