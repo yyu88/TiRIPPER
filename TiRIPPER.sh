@@ -196,7 +196,7 @@ echo "Already Cover Exists."
 else
 
 if [ "$play" = 0 ];then
-coverLocation=$(jq -r '.item[0].album.cover' <<< "$html")
+coverLocation=$(jq -r '.items[0].album.cover' <<< "$html")
 imageURL="https://resources.tidal.com/images/${coverLocation//-//}/1280x1280.jpg"
 wget -O cover.jpg "$imageURL"
 fi
@@ -223,9 +223,13 @@ newfix=$(gsed -e 's@/@,@g' <<< "${trackName[dindex]}")
 if ls "${findex} - $newfix.m4a" 1> /dev/null 2>&1;then
 echo "Already Exists."
 skip=1
+index=$((index+1))
+avoid=$((avoid+1))
 elif ls "${findex} - $newfix.flac" 1> /dev/null 2>&1;then
 echo "Already Exists."
 skip=1
+index=$((index+1))
+avoid=$((avoid+1))
 elif ls "$newfix.m4a" 1> /dev/null 2>&1;then
 echo "Already Exists."
 skip=1
